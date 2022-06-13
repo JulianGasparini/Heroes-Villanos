@@ -5,8 +5,7 @@ import java.util.List;
 
 public class Personaje extends Competidor {
 
-	private String nombreReal;
-	private String nombrePersonaje;
+	private String nombreReal;	
 	private Tipo tipo;
 	private List<Integer> caracteristicas = new ArrayList<Integer>();
 
@@ -15,8 +14,8 @@ public class Personaje extends Competidor {
 
 		this.tipo = tipo;
 		this.nombreReal = nombreReal;
-		this.nombrePersonaje = nombrePersonaje;
-
+		this.nombre = nombrePersonaje;
+		this.perteneceALiga = false;
 		caracteristicas.add(velocidad);
 		caracteristicas.add(fuerza);
 		caracteristicas.add(resistencia);
@@ -40,11 +39,16 @@ public class Personaje extends Competidor {
 
 	@Override
 	public String toString() {
-		return "Tipo: " + this.tipo + ", Nombre real: " + this.nombreReal + ", Nombre de personaje: "
-				+ this.nombrePersonaje + "\n" + "VELOCIDAD : " + caracteristicas.get(Caracteristica.VELOCIDAD.ordinal())
-				+ "\nFUERZA : " + caracteristicas.get(Caracteristica.FUERZA.ordinal()) + "\nRESISTENCIA: "
-				+ caracteristicas.get(Caracteristica.RESISTENCIA.ordinal()) + "\nDESTRESA: "
-				+ caracteristicas.get(Caracteristica.DESTREZA.ordinal());
+
+		return this.tipo + ", " + this.nombreReal + ", " + this.nombre + ", " + this.caracteristicas.get(0)
+				+ ", " + this.caracteristicas.get(1) + ", " + this.caracteristicas.get(2) + ", "
+				+ this.caracteristicas.get(3);
+
+//		return "Tipo: " + this.tipo + ", Nombre real: " + this.nombreReal + ", Nombre de personaje: "
+//				+ this.nombrePersonaje + "\n" + "VELOCIDAD : " + caracteristicas.get(Caracteristica.VELOCIDAD.ordinal())
+//				+ "\nFUERZA : " + caracteristicas.get(Caracteristica.FUERZA.ordinal()) + "\nRESISTENCIA: "
+//				+ caracteristicas.get(Caracteristica.RESISTENCIA.ordinal()) + "\nDESTRESA: "
+//				+ caracteristicas.get(Caracteristica.DESTREZA.ordinal());
 	}
 
 	public static void main(String[] args) {

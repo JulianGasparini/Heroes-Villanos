@@ -13,6 +13,7 @@ public class demo {
 		Menu menu = new Menu();
 		CreadorPersonajes la = new CreadorPersonajes();
 		ArenaDeCombate ac = ArenaDeCombate.getInstancia();
+		Escritor es = new Escritor();
 
 		int opcion;
 
@@ -55,6 +56,8 @@ public class demo {
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos los personajes\n");
+					System.out.println("Introduci el nombre del archivo donde se van a guardar los personajes (sin .txt): ");
+					es.escribirPersonajesEnArchivo(sn.next());
 					break;
 
 				}

@@ -5,14 +5,21 @@ import java.util.*;
 public class Liga extends Competidor {
 
 	Tipo tipo;
-	private String nombreLiga;
 	private ArrayList<Competidor> liga;
 
 	// Constructor de liga
-	public Liga(Tipo tipo, String nombreLiga) {
-		this.tipo = tipo;
-		this.nombreLiga = nombreLiga;
+	public Liga(String nombreLiga) {
+		this.nombre = nombreLiga;
 		this.liga = new ArrayList<Competidor>();
+		this.perteneceALiga = false;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 	// Agrega competidor a lista de liga
@@ -24,11 +31,6 @@ public class Liga extends Competidor {
 	public void obtenerListaCompetidores() {
 
 		System.out.println(liga.toString());
-	}
-
-	// Obtiene el nombre de liga
-	public String getNombreLiga() {
-		return nombreLiga;
 	}
 
 	// Devuelve el tipo de la liga
@@ -49,7 +51,7 @@ public class Liga extends Competidor {
 
 	@Override
 	public String toString() {
-		return "\n[Tipo: " + tipo + ", Nombre de liga: " + nombreLiga + "]\n" + liga.toString();
+		return "\n[Tipo: " + tipo + ", Nombre de liga: " + nombre + "]\n" + liga.toString();
 	}
 
 }

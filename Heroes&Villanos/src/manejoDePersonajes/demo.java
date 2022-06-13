@@ -7,8 +7,8 @@ public class demo {
 		Competidor c1 = new Personaje(Tipo.Heroe, "Bruce Wayne", "Batman", 400, 600, 800, 600);
 		Competidor c2 = new Personaje(Tipo.Heroe, "Clark Kent", "Superman", 900, 800, 800, 700);
 		Competidor c3 = new Personaje(Tipo.Heroe, "Selina Kyle", "Catwoman", 700, 300, 400, 900);
-		Liga l1 = new Liga(Tipo.Heroe, "Justice League");
-		Liga l2 = new Liga(Tipo.Heroe, "Supers");
+		Liga l1 = new Liga("Justice League");
+		Liga l2 = new Liga("Supers");
 		l1.agregarCompetidor(c1);
 		l1.agregarCompetidor(c2);
 		l2.agregarCompetidor(c3);
