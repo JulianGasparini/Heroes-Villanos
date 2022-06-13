@@ -27,12 +27,12 @@ public class Menu {
 	}
 	
 	public String realizacionCombates() {
-		return "	1- Personaje contra Liga" +
+		return "	1- Personaje contra Liga\n" +
 			   "	2- Liga contra Liga";
 	}
 	
 	public String reportes() {
-		return "	1- Todos los personajes o ligas que venzan a un personaje dado para cierta caracteística" +
+		return "	1- Todos los personajes o ligas que venzan a un personaje dado para cierta caracteística\n" +
 			   "	2- Listado ordenado de personajes por múltiples características";
 		
 	}

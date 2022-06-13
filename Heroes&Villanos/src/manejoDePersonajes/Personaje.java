@@ -1,23 +1,30 @@
 package manejoDePersonajes;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Personaje implements Competidor {
+public class Personaje extends Competidor {
 
 	private String nombreReal;
 	private String nombrePersonaje;
 	private Tipo tipo;
-	private HashMap<Caracteristica, Integer> caracteristicas = new HashMap<Caracteristica, Integer>();
+	private List<Integer> caracteristicas = new ArrayList<Integer>();
 
 	public Personaje(Tipo tipo, String nombreReal, String nombrePersonaje, int velocidad, int fuerza, int resistencia,
 			int destreza) {
+
 		this.tipo = tipo;
 		this.nombreReal = nombreReal;
 		this.nombrePersonaje = nombrePersonaje;
-		caracteristicas.put(Caracteristica.VELOCIDAD, velocidad);
-		caracteristicas.put(Caracteristica.FUERZA, fuerza);
-		caracteristicas.put(Caracteristica.RESISTENCIA, resistencia);
-		caracteristicas.put(Caracteristica.DESTREZA, destreza);
+
+		caracteristicas.add(velocidad);
+		caracteristicas.add(fuerza);
+		caracteristicas.add(resistencia);
+		caracteristicas.add(destreza);
+		caracteristicasEnum.add(Caracteristica.VELOCIDAD);
+		caracteristicasEnum.add(Caracteristica.FUERZA);
+		caracteristicasEnum.add(Caracteristica.RESISTENCIA);
+		caracteristicasEnum.add(Caracteristica.DESTREZA);
 	}
 
 	@Override
@@ -27,15 +34,43 @@ public class Personaje implements Competidor {
 
 	@Override
 	public int obtenerCaracteristica(Caracteristica c) {
-		return caracteristicas.get(c);
+		int i = c.ordinal();
+		return caracteristicas.get(i);
 	}
 
 	@Override
 	public String toString() {
 		return "Tipo: " + this.tipo + ", Nombre real: " + this.nombreReal + ", Nombre de personaje: "
-				+ this.nombrePersonaje + "\n" + "VEL: " + caracteristicas.get(Caracteristica.VELOCIDAD) + ", FUE: "
-				+ caracteristicas.get(Caracteristica.FUERZA) + ", RES: "
-				+ caracteristicas.get(Caracteristica.RESISTENCIA) + ", DES: "
-				+ caracteristicas.get(Caracteristica.DESTREZA);
+				+ this.nombrePersonaje + "\n" + "VELOCIDAD : " + caracteristicas.get(Caracteristica.VELOCIDAD.ordinal())
+				+ "\nFUERZA : " + caracteristicas.get(Caracteristica.FUERZA.ordinal()) + "\nRESISTENCIA: "
+				+ caracteristicas.get(Caracteristica.RESISTENCIA.ordinal()) + "\nDESTRESA: "
+				+ caracteristicas.get(Caracteristica.DESTREZA.ordinal());
 	}
+
+	public static void main(String[] args) {
+
+		// velocidad, fuerza , resistencia y destreza
+
+		Competidor heroe = new Personaje(Tipo.Heroe, "Bruce Wayne", "Batman", 1000, 800, 800, 600);
+		Competidor villano = new Personaje(Tipo.Villano, "Clark Kent", "Superman", 1000, 600, 800, 700);
+
+		System.out.println(heroe.toString());
+		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.VELOCIDAD));
+		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.VELOCIDAD));
+
+		System.out.println("Por Fuerza");
+		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.FUERZA));
+		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.FUERZA));
+
+		// EMPATE PREGUNTAR COMO RESOLVER
+		System.out.println("Por Resistencia");
+		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.RESISTENCIA));
+		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.RESISTENCIA));
+
+		System.out.println("Por Destreza");
+		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.DESTREZA));
+		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.DESTREZA));
+
+	}
+
 }

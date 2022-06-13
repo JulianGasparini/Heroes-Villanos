@@ -1,13 +1,18 @@
 package io;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import manejoDePersonajes.ArenaDeCombate;
 
 public class demo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, LineaDePersonajeMalCreada {
 
 		Scanner sn = new Scanner(System.in);
 		Menu menu = new Menu();
+		CreadorPersonajes la = new CreadorPersonajes();
+		ArenaDeCombate ac = ArenaDeCombate.getInstancia();
 
 		int opcion;
 
@@ -28,12 +33,25 @@ public class demo {
 
 				case 1:
 					System.out.println("Seleccionaste: carga desde archivo\n");
+					System.out.println("Introduci el nombre del archivo que queres cargar\n");
+					la.cargarPersonajesDesdeArchivo(sn.next());
 					break;
 				case 2:
 					System.out.println("Seleccionaste: creación\n");
-					break;
+					System.out.println("Introduci la linea con los datos de tu personaje en el siguiente orden: \n");
+					System.out.println(
+							"1- Heroe/Villano\n2-Nombre real\n3-Nombre de personaje\n4-Su velocidad\n5-Su fuerza\n6-Su resistencia\n7-Su destreza");
+					String[] pj = new String[7];
+					for (int i = 0; i < pj.length; i++) {
+						pj[i] = sn.next();
+					}
+
+					la.crearPersonaje(pj);
+
+						break;
 				case 3:
 					System.out.println("Seleccionaste: Listado\n");
+					System.out.println(ac.toString());
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos los personajes\n");
