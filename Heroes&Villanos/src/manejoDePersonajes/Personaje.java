@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Personaje extends Competidor {
 
-	private String nombreReal;	
+	private String nombreReal;
 	private Tipo tipo;
 	private List<Integer> caracteristicas = new ArrayList<Integer>();
 
@@ -26,6 +26,10 @@ public class Personaje extends Competidor {
 		caracteristicasEnum.add(Caracteristica.DESTREZA);
 	}
 
+	public String getNombreReal() {
+		return nombreReal;
+	}
+
 	@Override
 	public Tipo tipoDeCompetidor() {
 		return this.tipo;
@@ -40,9 +44,8 @@ public class Personaje extends Competidor {
 	@Override
 	public String toString() {
 
-		return this.tipo + ", " + this.nombreReal + ", " + this.nombre + ", " + this.caracteristicas.get(0)
-				+ ", " + this.caracteristicas.get(1) + ", " + this.caracteristicas.get(2) + ", "
-				+ this.caracteristicas.get(3);
+		return this.tipo + ", " + this.nombreReal + ", " + this.nombre + ", " + this.caracteristicas.get(0) + ", "
+				+ this.caracteristicas.get(1) + ", " + this.caracteristicas.get(2) + ", " + this.caracteristicas.get(3);
 
 //		return "Tipo: " + this.tipo + ", Nombre real: " + this.nombreReal + ", Nombre de personaje: "
 //				+ this.nombrePersonaje + "\n" + "VELOCIDAD : " + caracteristicas.get(Caracteristica.VELOCIDAD.ordinal())
@@ -51,30 +54,30 @@ public class Personaje extends Competidor {
 //				+ caracteristicas.get(Caracteristica.DESTREZA.ordinal());
 	}
 
-	public static void main(String[] args) {
-
-		// velocidad, fuerza , resistencia y destreza
-
-		Competidor heroe = new Personaje(Tipo.Heroe, "Bruce Wayne", "Batman", 1000, 800, 800, 600);
-		Competidor villano = new Personaje(Tipo.Villano, "Clark Kent", "Superman", 1000, 600, 800, 700);
-
-		System.out.println(heroe.toString());
-		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.VELOCIDAD));
-		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.VELOCIDAD));
-
-		System.out.println("Por Fuerza");
-		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.FUERZA));
-		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.FUERZA));
-
-		// EMPATE PREGUNTAR COMO RESOLVER
-		System.out.println("Por Resistencia");
-		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.RESISTENCIA));
-		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.RESISTENCIA));
-
-		System.out.println("Por Destreza");
-		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.DESTREZA));
-		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.DESTREZA));
-
-	}
+//	public static void main(String[] args) {
+//
+//		// velocidad, fuerza , resistencia y destreza
+//
+//		Competidor heroe = new Personaje(Tipo.Heroe, "Bruce Wayne", "Batman", 1000, 800, 800, 600);
+//		Competidor villano = new Personaje(Tipo.Villano, "Clark Kent", "Superman", 1000, 600, 800, 700);
+//
+//		System.out.println(heroe.toString());
+//		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.VELOCIDAD));
+//		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.VELOCIDAD));
+//
+//		System.out.println("Por Fuerza");
+//		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.FUERZA));
+//		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.FUERZA));
+//
+//		// EMPATE PREGUNTAR COMO RESOLVER
+//		System.out.println("Por Resistencia");
+//		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.RESISTENCIA));
+//		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.RESISTENCIA));
+//
+//		System.out.println("Por Destreza");
+//		System.out.println("Heroe gano: " + heroe.esGanador(villano, Caracteristica.DESTREZA));
+//		System.out.println("Villano gano: " + villano.esGanador(heroe, Caracteristica.DESTREZA));
+//
+//	}
 
 }

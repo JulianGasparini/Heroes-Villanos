@@ -16,6 +16,10 @@ public class ArenaDeCombate {
 	public int cantCompetidores() {
 		return competidores.size();
 	}
+	
+	public void vaciarListaCompetidores() {
+		competidores.clear();
+	}
 
 	public Competidor getCompetidor(String nombre) {
 		Competidor esperado = null;
@@ -26,13 +30,15 @@ public class ArenaDeCombate {
 		}
 		return esperado;
 	}
+
 	/*
-	 * @pos: devuelve TRUE si agrego el objeto, levanta una excepcion si no pudo hacerlo
+	 * @pos: devuelve TRUE si agrego el objeto, levanta una excepcion si no pudo
+	 * hacerlo
 	 */
 	public boolean agregarCompetidor(Competidor competidor) throws CompetidorRepetidoException {
 		if (competidores.contains(competidor)) {
 			throw new CompetidorRepetidoException();
-		}		
+		}
 		return competidores.add(competidor);
 	}
 
