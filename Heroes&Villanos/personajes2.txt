@@ -1,0 +1,10 @@
+Heroe, Clark Kent, Superman, 5000, 5000, 5000, 5000
+Heroe, Tom Holland, SpiderMan, 1345, 2345, 3345, 4345
+Heroe, Peter Parker, Fake Spiderman, 1000, 1000, 2400, 4000
+Heroe, Tony Stark, Ironman, 2590, 2509, 2529, 2585
+Heroe, Natasha Romanoff, Black Widow, 2500, 10, 10, 10
+Heroe, Steve Rogers, Capitan America, 2588, 25888, 2588, 64
+Heroe, Bruce Banner, Hulk, 9999, 9999, 9999, 9999
+Heroe, Wade Wilson, Deadpool, 11, 11, 11, 11
+Heroe, James Howlett, Wolverine, 3333, 3333, 3333, 3333
+Heroe, Stephen Vincent Strange, Dr Strange, 1000000, 100000, 100000, 10

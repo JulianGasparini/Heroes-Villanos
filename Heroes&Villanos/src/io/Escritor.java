@@ -44,7 +44,7 @@ public class Escritor {
 		try (FileWriter fw = new FileWriter(ligas)) {
 			List<Liga> ligasGuardadas = ar.getLigas();
 			for (Liga liga : ligasGuardadas) {
-				fw.write(liga.toString() + "\n");
+				fw.write(liga.getNombre() + ", " + liga.toString() + "\n");
 			}
 
 		} catch (IOException e) {

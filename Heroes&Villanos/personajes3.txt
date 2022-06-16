@@ -1,0 +1,10 @@
+Villano, Sergei Kravinoff, Kraven, 100, 100, 100, 100
+Villano, Felicia Hardy, Black Cat, 50, 50, 50, 50
+Villano, Namor, Namor, 1000, 1000, 1000, 1000
+Villano, Terrax, Terrax, 1500, 1500, 1500, 1500
+Villano, Mefisto, Mefisto, 666, 666, 666, 666  
+Heroe, Casey Kinmont, Dark Strange, 5000, 50000, 5000, 5000
+Heroe, Dane Whitman, Black Strange, 555, 555, 555, 555
+Heroe, Hank Pym, Ant-man, 8888, 8888, 8888, 8888
+Heroe, Carol Denvers, Capitana Marvel, 10001, 10001, 10001, 10001
+Heroe, Blackagar Boltagon, Black bolt, 2323, 2323, 2323, 2323

@@ -20,8 +20,7 @@ public class CreadorLigas {
 	public void cargarLigaAMemoria(String[] datos) throws LigaNoPudoCrearseCorrectamente {
 		try {
 
-			Liga nuevaLiga = new Liga(datos[0].trim()); // Nombre
-			System.out.println(datos[1]);
+			Liga nuevaLiga = new Liga(datos[0].trim()); // Nombre			
 			nuevaLiga.setTipo(ac.getCompetidor(datos[1].trim()).getTipoDeCompetidor()); //Set tipo de Liga
 
 			for (int i = 1; i < datos.length; i++) { // Mientras la linea siga
@@ -48,8 +47,10 @@ public class CreadorLigas {
 			ac.agregarALigas(nuevaLiga);
 		} catch (CompetidorNoPuedeAgregarseALigaException e) {
 			throw new LigaNoPudoCrearseCorrectamente();
-		} catch (CompetidorNoExisteException | CompetidorRepetidoException e) {
-			System.err.println("Competidor no existe");
+		} catch (CompetidorNoExisteException | NullPointerException e) {
+			System.err.println("Competidor no existe o se encutra repetido en la liga");
+		} catch (CompetidorRepetidoException e) {
+			System.err.println("La liga ya existe");
 		}
 
 	}

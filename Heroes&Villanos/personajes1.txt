@@ -1,0 +1,10 @@
+Villano, Victor Von Muerte, Doctor muerte, 100, 1000, 200, 425
+Villano, Nathaniel Richards, Kang, 123, 456, 789, 10
+Villano, Michael Clarke Duncan, Kingpin, 1000, 1000, 1, 2
+Villano, Hank Pym, Ultron, 2000, 2000, 2000, 2000
+Villano, Max Eisenhardt, Magneto, 100, 3500, 200, 4000
+Villano, Norman Osborn, El Duende Verde, 555, 555, 555, 555
+Villano, Sabah Nur, Apocalipsis, 322, 420, 1337, 69
+Villano, Loki, Loki, 69, 429, 676, 666
+Villano, Johann Schmidt, Craneo Rojo, 666, 666, 666, 666
+Villano, Thanos, Thanos, 9999, 9999, 9999, 9999

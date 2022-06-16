@@ -43,6 +43,8 @@ public class demo {
 						System.err.println("No se encontro el archivo");
 					} catch (LineaDePersonajeMalCreada e) {
 						System.err.println("Una linea de personaje se encontró mal formada");
+					} catch (IllegalArgumentException e) {
+						System.err.println("La linea esta mal formada o no pertenece a una linea de personaje");
 					}
 					break;
 				case 2:
@@ -99,10 +101,13 @@ public class demo {
 					String liga = sn.next();
 					System.out.println(
 							"Introduci los personajes o ligas que van a formar parte de la liga.\n Para terminar ingresa un '.'");
-					while (!sn.next().equals(".")) { // No anda xd
-						liga += ", " + sn.next();
-						System.out.println(liga);
-						
+					for (int i = 0; i <= 30; i++) {
+						String linea = sn.next();
+						if (!linea.equals("p")) {
+							liga += ", " + linea;
+						} else {
+							i = 30;
+						}
 					}
 					try {
 						cl.cargarLigaAMemoria(liga.split(","));
@@ -116,6 +121,8 @@ public class demo {
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos las ligas\n");
+					System.out.println(
+							"Introduci el nombre del archivo donde se van a guardar las ligas (sin .txt): ");
 					es.escribirLigasEnArchivo(sn.next());
 					break;
 
