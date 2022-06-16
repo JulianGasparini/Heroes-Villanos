@@ -22,13 +22,14 @@ public class CreadorPersonajes {
 
 		try {
 
-			Competidor nuevo = new Personaje(Tipo.valueOf(datos[0]), datos[1], datos[2],
+			Personaje nuevo = new Personaje(Tipo.valueOf(datos[0]), datos[1], datos[2],
 					Integer.parseInt(datos[3].trim()), Integer.parseInt(datos[4].trim()),
 					Integer.parseInt(datos[5].trim()), Integer.parseInt(datos[6].trim()));
-			arena.getCompetidores().add(nuevo);
+			arena.agregarCompetidor(nuevo);
+			arena.agregarAPersonajes(nuevo);
 			return true;
 
-		} catch (InvalidParameterException | NumberFormatException | IndexOutOfBoundsException e) { // revisar
+		} catch (InvalidParameterException | NumberFormatException | IndexOutOfBoundsException | CompetidorRepetidoException e) { // revisar
 			throw new LineaDePersonajeMalCreada();
 		}
 	}

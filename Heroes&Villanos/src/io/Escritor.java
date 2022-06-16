@@ -22,15 +22,29 @@ public class Escritor {
 
 	/*
 	 * @pos: guarda los personajes en un archivo de texto, el cual obtendra su
-	 * 			nombre por los parametros del metodo
+	 * nombre por los parametros del metodo
 	 */
 	public void escribirPersonajesEnArchivo(String nombreArchivo) {
 
 		File personajes = new File(nombreArchivo + ".txt");
 		try (FileWriter fw = new FileWriter(personajes)) {
-			List<Competidor> personajesGuardados = ar.getCompetidores();
-			for (Competidor competidor : personajesGuardados) {
-				fw.write(competidor.toString() + "\n");
+			List<Personaje> personajesGuardados = ar.getPersonajes();
+			for (Personaje personaje : personajesGuardados) {
+				fw.write(personaje.toString() + "\n");
+			}
+
+		} catch (IOException e) {
+			System.err.println("No se pudo crear el archivo");
+		}
+	}
+
+	public void escribirLigasEnArchivo(String nombreArchivo) {
+
+		File ligas = new File(nombreArchivo + ".txt");
+		try (FileWriter fw = new FileWriter(ligas)) {
+			List<Liga> ligasGuardadas = ar.getLigas();
+			for (Liga liga : ligasGuardadas) {
+				fw.write(liga.toString() + "\n");
 			}
 
 		} catch (IOException e) {

@@ -8,45 +8,56 @@ import manejoDePersonajes.*;
 
 public class CreadorLigas {
 
-	private ArenaDeCombate ar;
+	private ArenaDeCombate ac;
 
 	public CreadorLigas() {
-		ar = ArenaDeCombate.getInstancia();
+		ac = ArenaDeCombate.getInstancia();
 	}
-
-	public void cargarLigaAMemoria(String[] datos) {
+	/*
+	 * @pos: procesa una Liga construida en una linea con el formato correspondiente ("Nombre Liga", Integrante n, Integrante n+1, ...)
+	 * 		Si la liga se crea sin problemas la almacena en la lista de competidores de la clase ArenaDeCombate
+	 */
+	public void cargarLigaAMemoria(String[] datos) throws LigaNoPudoCrearseCorrectamente {
 		try {
 
-			Liga nuevaLiga = new Liga(datos[0].trim());
+			Liga nuevaLiga = new Liga(datos[0].trim()); // Nombre
+			System.out.println(datos[1]);
+			nuevaLiga.setTipo(ac.getCompetidor(datos[1].trim()).getTipoDeCompetidor()); //Set tipo de Liga
 
-			for (int i = 1; i < datos.length; i++) {
+			for (int i = 1; i < datos.length; i++) { // Mientras la linea siga
 
-				Competidor adicionALiga = ar.getCompetidor(datos[i].trim());
+				Competidor adicionALiga = ac.getCompetidor(datos[i].trim()); // Busca el personaje
 
-				try {
+				if (adicionALiga == null)	{								// Si no existe, levanta excepcion
+					throw new CompetidorNoExisteException();
+					}
 
-					if (adicionALiga == null)
-						throw new CompetidorNoExisteException();
+				if (!adicionALiga.getPerteneceALiga()
+						|| adicionALiga.getTipoDeCompetidor() == nuevaLiga.getTipoDeCompetidor()) { // Si existe, le pregunta si ya no pertenece a otra liga
+																									// y si coincide con el tipo de villano/heroe
 
-				} catch (Exception e) {
-					System.err.println("El competidor no existe");
-				}
-
-				if (!adicionALiga.getPerteneceALiga()) {
-					nuevaLiga.agregarCompetidor(adicionALiga);
+					nuevaLiga.agregarCompetidor(adicionALiga);										// Lo agrega a la liga y lo marca como perteneciente a una liga
 					adicionALiga.setPerteneceALiga(true);
+
+				} else {
+					throw new CompetidorNoPuedeAgregarseALigaException();
 				}
 			}
-
-			ar.agregarCompetidor(nuevaLiga);
-
-		} catch (Exception e) {
-			System.err.println("No pudo crearse Liga");
+			
+			ac.agregarCompetidor(nuevaLiga);														// Luego de iterar por todos los integrantes, agrega la liga a la lista de competidores
+			ac.agregarALigas(nuevaLiga);
+		} catch (CompetidorNoPuedeAgregarseALigaException e) {
+			throw new LigaNoPudoCrearseCorrectamente();
+		} catch (CompetidorNoExisteException | CompetidorRepetidoException e) {
+			System.err.println("Competidor no existe");
 		}
 
 	}
-
-	public void cargarLigaDesdeArchivo(String archivo) throws FileNotFoundException {
+	
+	/*
+	 * @pos: Procesa un archivo conteniendo multiples lineas que conforman ligas
+	 */
+	public void cargarLigaDesdeArchivo(String archivo) throws FileNotFoundException, LigaNoPudoCrearseCorrectamente {
 
 		try {
 

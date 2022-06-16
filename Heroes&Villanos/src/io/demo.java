@@ -4,16 +4,18 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import manejoDePersonajes.ArenaDeCombate;
+import manejoDePersonajes.Caracteristica;
 
 public class demo {
 
-	public static void main(String[] args) throws FileNotFoundException, LineaDePersonajeMalCreada {
+	public static void main(String[] args) {
 
 		Scanner sn = new Scanner(System.in);
 		Menu menu = new Menu();
 		CreadorPersonajes la = new CreadorPersonajes();
 		ArenaDeCombate ac = ArenaDeCombate.getInstancia();
 		Escritor es = new Escritor();
+		CreadorLigas cl = new CreadorLigas();
 
 		int opcion;
 
@@ -35,7 +37,13 @@ public class demo {
 				case 1:
 					System.out.println("Seleccionaste: carga desde archivo\n");
 					System.out.println("Introduci el nombre del archivo que queres cargar\n");
-					la.cargarPersonajesDesdeArchivo(sn.next());
+					try {
+						la.cargarPersonajesDesdeArchivo(sn.next());
+					} catch (FileNotFoundException e) {
+						System.err.println("No se encontro el archivo");
+					} catch (LineaDePersonajeMalCreada e) {
+						System.err.println("Una linea de personaje se encontró mal formada");
+					}
 					break;
 				case 2:
 					System.out.println("Seleccionaste: creación\n");
@@ -46,17 +54,21 @@ public class demo {
 					for (int i = 0; i < pj.length; i++) {
 						pj[i] = sn.next();
 					}
+					try {
+						la.crearPersonaje(pj);
+					} catch (LineaDePersonajeMalCreada e) {
+						System.err.println("Datos introducidos incorrectamente");
+					}
 
-					la.crearPersonaje(pj);
-
-						break;
+					break;
 				case 3:
 					System.out.println("Seleccionaste: Listado\n");
-					System.out.println(ac.toString());
+					System.out.println(ac.toStringPersonajes());
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos los personajes\n");
-					System.out.println("Introduci el nombre del archivo donde se van a guardar los personajes (sin .txt): ");
+					System.out.println(
+							"Introduci el nombre del archivo donde se van a guardar los personajes (sin .txt): ");
 					es.escribirPersonajesEnArchivo(sn.next());
 					break;
 
@@ -72,15 +84,39 @@ public class demo {
 
 				case 1:
 					System.out.println("Seleccionaste: carga desde archivo\n");
+					System.out.println("Introduci el nombre del archivo que queres cargar\n");
+					try {
+						cl.cargarLigaDesdeArchivo(sn.next());
+					} catch (FileNotFoundException e) {
+						System.err.println("No se encontro el archivo");
+					} catch (LigaNoPudoCrearseCorrectamente e) {
+						System.err.println("Una liga no pudo crearse, los datos eran incorrectos");
+					}
 					break;
 				case 2:
 					System.out.println("Seleccionaste: creación\n");
+					System.out.println("Introduci el nombre de la liga a crear");
+					String liga = sn.next();
+					System.out.println(
+							"Introduci los personajes o ligas que van a formar parte de la liga.\n Para terminar ingresa un '.'");
+					while (!sn.next().equals(".")) { // No anda xd
+						liga += ", " + sn.next();
+						System.out.println(liga);
+						
+					}
+					try {
+						cl.cargarLigaAMemoria(liga.split(","));
+					} catch (LigaNoPudoCrearseCorrectamente e) {
+						System.err.println("La liga no puedo crearse, datos incorrectos");
+					}
 					break;
 				case 3:
 					System.out.println("Seleccionaste: Listado\n");
+					System.out.println(ac.toStringLigas());
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos las ligas\n");
+					es.escribirLigasEnArchivo(sn.next());
 					break;
 
 				}
@@ -112,10 +148,17 @@ public class demo {
 				switch (op4) {
 
 				case 1:
-					System.out.println("Seleccionaste: Personajes/ligas ordenados por x caracteristica\n");
+					System.out.println(
+							"Seleccionaste: Personajes/ligas ordenados por x caracteristica\nIntroduzca la caractertisica por la que quiere ordenarlos:");
+					try {
+						System.out.println(ac.toStringOrdenados(Caracteristica.valueOf(sn.next())));
+					} catch (Exception e) {
+						System.err.println("No existe esa caracteristica");
+					}
+
 					break;
 				case 2:
-					System.out.println("Personajes ligas que venzan a x personajes\n");
+					System.out.println("Personajes ligas que venzan a x personajes o liga\n");
 					break;
 				}
 

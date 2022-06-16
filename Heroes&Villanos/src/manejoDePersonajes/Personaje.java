@@ -31,11 +31,6 @@ public class Personaje extends Competidor {
 	}
 
 	@Override
-	public Tipo tipoDeCompetidor() {
-		return this.tipo;
-	}
-
-	@Override
 	public int obtenerCaracteristica(Caracteristica c) {
 		int i = c.ordinal();
 		return caracteristicas.get(i);

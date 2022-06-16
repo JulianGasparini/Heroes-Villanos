@@ -7,10 +7,13 @@ public abstract class Competidor {
 	public List<Caracteristica> caracteristicasEnum = new ArrayList<Caracteristica>();
 	protected boolean perteneceALiga;
 	protected String nombre;
+	protected Tipo tipoDeCompetidor;
 
 	public abstract int obtenerCaracteristica(Caracteristica c);
 
-	public abstract Tipo tipoDeCompetidor();
+	public Tipo getTipoDeCompetidor() {
+		return this.tipoDeCompetidor;
+	}
 
 	public String getNombre() {
 		return this.nombre;

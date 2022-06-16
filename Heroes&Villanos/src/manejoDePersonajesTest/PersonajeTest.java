@@ -17,7 +17,7 @@ public class PersonajeTest {
 
 	@Test
 	public void tipoDeHeroeTest() {
-		Assert.assertEquals(Tipo.Heroe, heroe.tipoDeCompetidor());
+		Assert.assertEquals(Tipo.Heroe, heroe.getTipoDeCompetidor());
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class PersonajeTest {
 
 	@Test
 	public void tipoDeVillanoTest() {
-		Assert.assertEquals(Tipo.Villano, villano.tipoDeCompetidor());
+		Assert.assertEquals(Tipo.Villano, villano.getTipoDeCompetidor());
 	}
 
 	@Test

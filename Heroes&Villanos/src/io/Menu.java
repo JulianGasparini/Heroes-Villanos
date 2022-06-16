@@ -32,8 +32,8 @@ public class Menu {
 	}
 	
 	public String reportes() {
-		return "	1- Todos los personajes o ligas que venzan a un personaje dado para cierta caracteística\n" +
-			   "	2- Listado ordenado de personajes por múltiples características";
+		return "	1- Listado ordenado de personajes por múltiples características\n" +
+			   "	2- Todos los personajes o ligas que venzan a un personaje dado para cierta caracteística";
 		
 	}
 

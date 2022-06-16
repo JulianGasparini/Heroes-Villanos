@@ -33,12 +33,6 @@ public class Liga extends Competidor {
 		System.out.println(liga.toString());
 	}
 
-	// Devuelve el tipo de la liga
-	@Override
-	public Tipo tipoDeCompetidor() {
-		return this.tipo;
-	}
-
 	// Obtiene el valor de la caracteristica que se pasa por parámetro
 	@Override
 	public int obtenerCaracteristica(Caracteristica c) {
@@ -51,7 +45,11 @@ public class Liga extends Competidor {
 
 	@Override
 	public String toString() {
-		return "\n[Tipo: " + tipo + ", Nombre de liga: " + nombre + "]\n" + liga.toString();
+		String rt = "";
+		for (Competidor competidor : liga) {
+			rt += competidor.getNombre() + ", ";
+		}
+		return rt;
 	}
 
 }
