@@ -3,8 +3,10 @@ package io;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import manejoDePersonajes.ArenaDeCombate;
-import manejoDePersonajes.Caracteristica;
+import Excepciones.EsEmpateException;
+import Excepciones.LigaNoPudoCrearseCorrectamente;
+import Excepciones.LineaDePersonajeMalCreada;
+import manejoDePersonajes.*;
 
 public class demo {
 
@@ -113,7 +115,7 @@ public class demo {
 						cl.cargarLigaAMemoria(liga.split(","));
 					} catch (LigaNoPudoCrearseCorrectamente e) {
 						System.err.println("La liga no puedo crearse, datos incorrectos");
-					}
+					} 
 					break;
 				case 3:
 					System.out.println("Seleccionaste: Listado\n");
@@ -121,8 +123,7 @@ public class demo {
 					break;
 				case 4:
 					System.out.println("Seleccionaste: Guardar en archivo todos las ligas\n");
-					System.out.println(
-							"Introduci el nombre del archivo donde se van a guardar las ligas (sin .txt): ");
+					System.out.println("Introduci el nombre del archivo donde se van a guardar las ligas (sin .txt): ");
 					es.escribirLigasEnArchivo(sn.next());
 					break;
 
@@ -131,18 +132,30 @@ public class demo {
 				break;
 			case 3:
 
-				int op3;
-				System.out.println(menu.realizacionCombates());
-				op3 = sn.nextInt();
+				System.out.println("Seleccionaste: combate\n");
+				System.out.println(
+						"Ingresa la caracteristica por la que van a combatir los Competidores(VELOCIDAD, FUERZA, RESISTENCIA, DESTREZA)");
 
-				switch (op3) {
+				try {
+					Caracteristica c = Caracteristica.valueOf(sn.next());
+					System.out.println("Ingresa el primer competidor: ");
+					Competidor c1 = ac.getCompetidor(sn.next().trim());
+					System.out.println("Ingresa el segundo competidor: ");
+					Competidor c2 = ac.getCompetidor(sn.next().trim());
 
-				case 1:
-					System.out.println("Seleccionaste: personaje contra liga\n");
-					break;
-				case 2:
-					System.out.println("Seleccionaste: liga contra liga\n");
-					break;
+					if (c1.esGanador(c2, c)) {
+						System.out.println("El ganador es: " + c1.getNombre());
+					} else
+						System.out.println("El ganador es: " + c2.getNombre());
+
+				} catch (IllegalArgumentException e) {
+					System.err.println("La caracteristica no existe");
+				}
+
+				catch (NullPointerException e) {
+					System.err.println("Personaje no existe");
+				} catch (EsEmpateException e) {
+					System.out.println("Empate");
 				}
 
 				break;
@@ -165,7 +178,16 @@ public class demo {
 
 					break;
 				case 2:
-					System.out.println("Personajes ligas que venzan a x personajes o liga\n");
+					System.out.println("Seleccionaste: Personajes ligas que venzan a x personajes o liga\n");
+					System.out.println("Ingresa tu personaje o liga que queres comparar con el resto");
+					try {
+						Competidor comp = ac.getCompetidor(sn.next().trim());
+						System.out.println("Ingresa la caracteristica por la que lo queres comparar");
+						Caracteristica c = Caracteristica.valueOf(sn.next());
+						System.out.println(ac.getCompetidoresQuePuedeVencer(comp, c));
+					} catch (NullPointerException e) {
+						System.err.println("Competidor no existe");
+					}
 					break;
 				}
 

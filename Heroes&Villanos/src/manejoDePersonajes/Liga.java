@@ -27,12 +27,6 @@ public class Liga extends Competidor {
 		liga.add(p);
 	}
 
-	// Imprime la lista de competidores
-	public void obtenerListaCompetidores() {
-
-		System.out.println(liga.toString());
-	}
-
 	// Obtiene el valor de la caracteristica que se pasa por parámetro
 	@Override
 	public int obtenerCaracteristica(Caracteristica c) {

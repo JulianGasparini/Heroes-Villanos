@@ -2,6 +2,8 @@ package manejoDePersonajesTest;
 
 import org.junit.Test;
 
+import Excepciones.CompetidorRepetidoException;
+
 import org.junit.Assert;
 import manejoDePersonajes.*;
 

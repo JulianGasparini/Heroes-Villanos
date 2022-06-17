@@ -4,12 +4,19 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import Excepciones.CompetidorNoExisteException;
+import Excepciones.CompetidorNoPuedeAgregarseALigaException;
+import Excepciones.CompetidorRepetidoException;
+import Excepciones.LigaNoPudoCrearseCorrectamente;
 import manejoDePersonajes.*;
 
 public class CreadorLigas {
 
 	private ArenaDeCombate ac;
-
+	/*
+	 * @pos: obtiene la instancia de la ArenaDeCombate
+	 */
 	public CreadorLigas() {
 		ac = ArenaDeCombate.getInstancia();
 	}

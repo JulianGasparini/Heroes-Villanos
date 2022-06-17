@@ -37,7 +37,10 @@ public class Escritor {
 			System.err.println("No se pudo crear el archivo");
 		}
 	}
-
+	/*
+	 * @pos: guarda las ligas en un archivo de texto, el cual obtendra su
+	 * nombre por los parametros del metodo
+	 */
 	public void escribirLigasEnArchivo(String nombreArchivo) {
 
 		File ligas = new File(nombreArchivo + ".txt");

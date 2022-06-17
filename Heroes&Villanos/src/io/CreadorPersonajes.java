@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+
+import Excepciones.CompetidorRepetidoException;
+import Excepciones.LineaDePersonajeMalCreada;
 import manejoDePersonajes.*;
 
 /*
