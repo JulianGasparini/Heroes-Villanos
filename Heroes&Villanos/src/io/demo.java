@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Excepciones.EsEmpateException;
 import Excepciones.LigaNoPudoCrearseCorrectamente;
 import Excepciones.LineaDePersonajeMalCreada;
+import Excepciones.MismoTipoExcepcion;
 import manejoDePersonajes.*;
 
 public class demo {
@@ -115,7 +116,7 @@ public class demo {
 						cl.cargarLigaAMemoria(liga.split(","));
 					} catch (LigaNoPudoCrearseCorrectamente e) {
 						System.err.println("La liga no puedo crearse, datos incorrectos");
-					} 
+					}
 					break;
 				case 3:
 					System.out.println("Seleccionaste: Listado\n");
@@ -143,6 +144,10 @@ public class demo {
 					System.out.println("Ingresa el segundo competidor: ");
 					Competidor c2 = ac.getCompetidor(sn.next().trim());
 
+					if (c1.getTipoDeCompetidor() != c2.getTipoDeCompetidor()) {
+						throw new MismoTipoExcepcion();
+					}
+
 					if (c1.esGanador(c2, c)) {
 						System.out.println("El ganador es: " + c1.getNombre());
 					} else
@@ -150,9 +155,10 @@ public class demo {
 
 				} catch (IllegalArgumentException e) {
 					System.err.println("La caracteristica no existe");
-				}
-
-				catch (NullPointerException e) {
+				} catch (MismoTipoExcepcion e) {
+					System.err.println(
+							"Los dos competidores son del mismo tipo\n para enfrentarse deben ser heroe vs villano o villano vs heroe");
+				} catch (NullPointerException e) {
 					System.err.println("Personaje no existe");
 				} catch (EsEmpateException e) {
 					System.out.println("Empate");
