@@ -3,10 +3,10 @@ package manejoDePersonajesTest;
 import org.junit.Test;
 
 import Excepciones.CompetidorRepetidoException;
-import ManipuladorCompetidores.ArenaDeCombate;
+import competidores.*;
+import manipuladorCompetidores.ArenaDeCombate;
 
 import org.junit.Assert;
-import manejoDePersonajes.*;
 
 public class ArenaDeCombateTest {
 

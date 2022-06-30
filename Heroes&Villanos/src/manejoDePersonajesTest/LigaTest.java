@@ -2,7 +2,7 @@ package manejoDePersonajesTest;
 
 import org.junit.*;
 
-import manejoDePersonajes.*;
+import competidores.*;
 
 public class LigaTest {
 	Personaje heroe1, heroe2, villano1, villano2;

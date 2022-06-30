@@ -1,9 +1,9 @@
-package ManipuladorCompetidores;
+package manipuladorCompetidores;
 
-import manejoDePersonajes.Caracteristica;
-import manejoDePersonajes.Competidor;
-import manejoDePersonajes.Liga;
-import manejoDePersonajes.Personaje;
+import competidores.Caracteristica;
+import competidores.Competidor;
+import competidores.Liga;
+import competidores.Personaje;
 
 public class ConversorDatosAString {
 

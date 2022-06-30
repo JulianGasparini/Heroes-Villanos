@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import ManipuladorCompetidores.ArenaDeCombate;
-import manejoDePersonajes.*;
+import competidores.*;
+import manipuladorCompetidores.ArenaDeCombate;
 
 /*
  * Guarda los distintos personajes y ligas almacenados en la memoria dinamica a la memoria estatica en formato de archivo de textos

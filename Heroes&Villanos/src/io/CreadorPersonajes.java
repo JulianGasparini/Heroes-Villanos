@@ -2,8 +2,8 @@ package io;
 
 import Excepciones.CompetidorRepetidoException;
 import Excepciones.PersonajeNoPudoCrearseCorrectamente;
-import ManipuladorCompetidores.ArenaDeCombate;
-import manejoDePersonajes.*;
+import competidores.*;
+import manipuladorCompetidores.ArenaDeCombate;
 
 /*
  * Esta clase tiene la responsabilidad de crear Personajes, sean ingresados por consola o por un archivo de texto

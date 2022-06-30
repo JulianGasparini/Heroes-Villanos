@@ -1,4 +1,4 @@
-package manejoDePersonajes;
+package competidores;
 
 public class Personaje extends Competidor {
 

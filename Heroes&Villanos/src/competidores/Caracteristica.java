@@ -1,4 +1,4 @@
-package manejoDePersonajes;
+package competidores;
 
 public enum Caracteristica {
 

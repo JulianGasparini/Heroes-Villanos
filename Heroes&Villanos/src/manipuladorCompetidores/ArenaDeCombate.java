@@ -1,14 +1,14 @@
-package ManipuladorCompetidores;
+package manipuladorCompetidores;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import Excepciones.CompetidorRepetidoException;
-import manejoDePersonajes.Caracteristica;
-import manejoDePersonajes.Competidor;
-import manejoDePersonajes.Liga;
-import manejoDePersonajes.Personaje;
+import competidores.Caracteristica;
+import competidores.Competidor;
+import competidores.Liga;
+import competidores.Personaje;
 
 public class ArenaDeCombate {
 

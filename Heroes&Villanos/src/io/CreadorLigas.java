@@ -4,8 +4,8 @@ import Excepciones.CompetidorNoExisteException;
 import Excepciones.CompetidorNoPuedeAgregarseALigaException;
 import Excepciones.CompetidorRepetidoException;
 import Excepciones.LigaNoPudoCrearseCorrectamente;
-import ManipuladorCompetidores.ArenaDeCombate;
-import manejoDePersonajes.*;
+import competidores.*;
+import manipuladorCompetidores.ArenaDeCombate;
 
 public class CreadorLigas extends Creador {
 

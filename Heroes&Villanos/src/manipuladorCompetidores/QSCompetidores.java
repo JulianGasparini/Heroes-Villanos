@@ -1,7 +1,7 @@
-package ManipuladorCompetidores;
+package manipuladorCompetidores;
 
-import manejoDePersonajes.Caracteristica;
-import manejoDePersonajes.Competidor;
+import competidores.Caracteristica;
+import competidores.Competidor;
 
 public class QSCompetidores {
 	

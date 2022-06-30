@@ -1,4 +1,4 @@
-package manejoDePersonajes;
+package competidores;
 
 import java.util.ArrayList;
 import java.util.List;

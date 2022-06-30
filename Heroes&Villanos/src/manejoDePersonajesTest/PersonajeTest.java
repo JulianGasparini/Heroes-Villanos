@@ -2,7 +2,7 @@ package manejoDePersonajesTest;
 
 import org.junit.*;
 
-import manejoDePersonajes.*;
+import competidores.*;
 
 public class PersonajeTest {
 

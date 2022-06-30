@@ -5,10 +5,10 @@ import Excepciones.LigaNoPudoCrearseCorrectamente;
 import Excepciones.PersonajeNoPudoCrearseCorrectamente;
 import Excepciones.MismoTipoExcepcion;
 import Excepciones.NoSeEncontroElArchivoExcepcion;
-import ManipuladorCompetidores.ArenaDeCombate;
-import ManipuladorCompetidores.ConversorDatosAString;
-import manejoDePersonajes.*;
+import competidores.*;
 import io.*;
+import manipuladorCompetidores.ArenaDeCombate;
+import manipuladorCompetidores.ConversorDatosAString;
 
 public class demo {
 
