@@ -44,7 +44,8 @@ public class demo {
 
 					try {
 						cp.cargarDesdeArchivo(sn.next());
-					} catch (PersonajeNoPudoCrearseCorrectamente | LigaNoPudoCrearseCorrectamente | NoSeEncontroElArchivoExcepcion e) {
+					} catch (PersonajeNoPudoCrearseCorrectamente | LigaNoPudoCrearseCorrectamente
+							| NoSeEncontroElArchivoExcepcion e) {
 						System.err.println(e.getMessage());
 					}
 					break;
@@ -84,7 +85,8 @@ public class demo {
 					System.out.println(menu.submenuCargaArchivo());
 					try {
 						cl.cargarDesdeArchivo(sn.next());
-					} catch (NoSeEncontroElArchivoExcepcion | LigaNoPudoCrearseCorrectamente | PersonajeNoPudoCrearseCorrectamente e) {
+					} catch (NoSeEncontroElArchivoExcepcion | LigaNoPudoCrearseCorrectamente
+							| PersonajeNoPudoCrearseCorrectamente e) {
 						System.err.println(e.getMessage());
 					}
 

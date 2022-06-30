@@ -60,6 +60,7 @@ public class PersonajeTest {
 		Assert.assertEquals(900, villano.getCaracteristicaPorEnum(Caracteristica.RESISTENCIA));
 		Assert.assertEquals(600, villano.getCaracteristicaPorEnum(Caracteristica.DESTREZA));
 	}
+
 	@Test
 	public void toStringPersonaje() {
 		Assert.assertEquals("Heroe, Bruce Wayne, Batman, 400, 600, 800, 600", heroe.toString());

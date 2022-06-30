@@ -10,5 +10,5 @@ public class NoSeEncontroElArchivoExcepcion extends Exception {
 	public NoSeEncontroElArchivoExcepcion() {
 		super("No se encontro el archivo. Intente agregando el tipo de archivo (Ejemplo: Test.txt)");
 	}
-	
+
 }

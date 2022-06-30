@@ -11,11 +11,11 @@ import Excepciones.PersonajeNoPudoCrearseCorrectamente;
 public abstract class Creador {
 
 	/*
-	 * @pos: lee el archivo indicado en el parametro desde el directorio base del proyecto ...\\Heroes&Villano\\archivo
+	 * @pos: lee el archivo indicado en el parametro desde el directorio base del
+	 * proyecto ...\\Heroes&Villano\\archivo
 	 */
 	public void cargarDesdeArchivo(String archivo)
 			throws LigaNoPudoCrearseCorrectamente, PersonajeNoPudoCrearseCorrectamente, NoSeEncontroElArchivoExcepcion {
-	
 
 		try {
 
@@ -37,5 +37,6 @@ public abstract class Creador {
 
 	}
 
-	public abstract boolean crear(String[] datos) throws PersonajeNoPudoCrearseCorrectamente, LigaNoPudoCrearseCorrectamente;
+	public abstract boolean crear(String[] datos)
+			throws PersonajeNoPudoCrearseCorrectamente, LigaNoPudoCrearseCorrectamente;
 }

@@ -4,7 +4,7 @@ import competidores.Caracteristica;
 import competidores.Competidor;
 
 public class QSCompetidores {
-	
+
 	/*
 	 * Quicksort modificado para trabajar sobre la caracteristica indicada
 	 */

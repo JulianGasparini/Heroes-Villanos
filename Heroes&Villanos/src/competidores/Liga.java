@@ -10,7 +10,8 @@ public class Liga extends Competidor {
 	public Liga(String nombreLiga) {
 		setNombre(nombreLiga);
 		this.liga = new ArrayList<Competidor>();
-		setPerteneceALiga(false);;
+		setPerteneceALiga(false);
+		;
 	}
 
 	// Agrega competidor a lista de liga

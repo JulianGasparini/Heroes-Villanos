@@ -45,7 +45,8 @@ public class CreadorLigas extends Creador {
 			ac.agregarCompetidor(nuevaLiga);
 			ac.agregarALigas(nuevaLiga);
 			return true;
-		} catch (CompetidorNoPuedeAgregarseALigaException | CompetidorNoExisteException | CompetidorRepetidoException e) {
+		} catch (CompetidorNoPuedeAgregarseALigaException | CompetidorNoExisteException
+				| CompetidorRepetidoException e) {
 			throw new LigaNoPudoCrearseCorrectamente();
 		}
 	}
