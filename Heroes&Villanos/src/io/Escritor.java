@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+
+import ManipuladorCompetidores.ArenaDeCombate;
 import manejoDePersonajes.*;
 
 /*
@@ -32,10 +34,11 @@ public class Escritor {
 			for (Personaje personaje : personajesGuardados) {
 				fw.write(personaje.toString() + "\n");
 			}
+			fw.close();
 
 		} catch (IOException e) {
 			System.err.println("No se pudo crear el archivo");
-		}
+		}		
 	}
 	/*
 	 * @pos: guarda las ligas en un archivo de texto, el cual obtendra su
@@ -49,6 +52,7 @@ public class Escritor {
 			for (Liga liga : ligasGuardadas) {
 				fw.write(liga.getNombre() + ", " + liga.toString() + "\n");
 			}
+			fw.close();
 
 		} catch (IOException e) {
 			System.err.println("No se pudo crear el archivo");

@@ -3,17 +3,17 @@ package manejoDePersonajesTest;
 import org.junit.Test;
 
 import Excepciones.CompetidorRepetidoException;
+import ManipuladorCompetidores.ArenaDeCombate;
 
 import org.junit.Assert;
 import manejoDePersonajes.*;
 
 public class ArenaDeCombateTest {
 
-	private ArenaDeCombate ar;
+	private ArenaDeCombate ar = ArenaDeCombate.getInstancia();
 
 	@Test
 	public void buscarPersonaje() {
-		ar = ArenaDeCombate.getInstancia();
 		Personaje p = new Personaje(Tipo.Heroe, "Batman", "Batman", 1, 1, 1, 1);
 		Liga s = new Liga("DC");
 
@@ -27,7 +27,6 @@ public class ArenaDeCombateTest {
 
 	@Test
 	public void cantidadDeCompetidores() {
-		ar = ArenaDeCombate.getInstancia();
 		Personaje p1 = new Personaje(Tipo.Heroe, "Batman", "Batman", 1, 1, 1, 1);
 		Personaje p2 = new Personaje(Tipo.Heroe, "Robin", "Robin", 1, 1, 1, 1);
 		Liga s = new Liga("DC");
@@ -41,7 +40,6 @@ public class ArenaDeCombateTest {
 
 	@Test
 	public void agregoCompetidor() throws CompetidorRepetidoException {
-		ar = ArenaDeCombate.getInstancia();
 		Personaje p1 = new Personaje(Tipo.Heroe, "Batman", "Batman", 1, 1, 1, 1);
 		Personaje p2 = new Personaje(Tipo.Heroe, "Robin", "Robin", 1, 1, 1, 1);
 		Liga s = new Liga("DC");

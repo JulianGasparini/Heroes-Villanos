@@ -4,7 +4,6 @@ public class Personaje extends Competidor {
 
 	// Atributos
 	private String nombreReal;
-	private Tipo tipo;
 
 	/*
 	 * @pos: crea un objeto de tipo Personaje y asigna los parametros a los
@@ -12,19 +11,24 @@ public class Personaje extends Competidor {
 	 */
 	public Personaje(Tipo tipo, String nombreReal, String nombrePersonaje, int velocidad, int fuerza, int resistencia,
 			int destreza) {
-
-		this.tipo = tipo;
+		super();
 		this.nombreReal = nombreReal;
-		this.nombre = nombrePersonaje;
-		this.perteneceALiga = false;
-		caracteristicas.add(velocidad);
-		caracteristicas.add(fuerza);
-		caracteristicas.add(resistencia);
-		caracteristicas.add(destreza);
-		caracteristicasEnum.add(Caracteristica.VELOCIDAD);
-		caracteristicasEnum.add(Caracteristica.FUERZA);
-		caracteristicasEnum.add(Caracteristica.RESISTENCIA);
-		caracteristicasEnum.add(Caracteristica.DESTREZA);
+		setTipoDeCompetidor(tipo);
+		setNombre(nombrePersonaje);
+		setPerteneceALiga(false);
+		agregarCaracteristica(velocidad);
+		agregarCaracteristica(fuerza);
+		agregarCaracteristica(resistencia);
+		agregarCaracteristica(destreza);
+
+	}
+
+	/*
+	 * @return: devuelve la posicion de la caracteristica en el Enumerado
+	 */
+	public int getCaracteristicaPorEnum(Caracteristica c) {
+		int i = c.ordinal();
+		return getCaracteristica(i);
 	}
 
 	/*
@@ -34,20 +38,12 @@ public class Personaje extends Competidor {
 		return nombreReal;
 	}
 
-	/*
-	 * @return: devuelve la posicion de la caracteristica en el Enumerado
-	 */
-	@Override
-	public int obtenerCaracteristica(Caracteristica c) {
-		int i = c.ordinal();
-		return caracteristicas.get(i);
-	}
-
 	@Override
 	public String toString() {
 
-		return this.tipo + ", " + this.nombreReal + ", " + this.nombre + ", " + this.caracteristicas.get(0) + ", "
-				+ this.caracteristicas.get(1) + ", " + this.caracteristicas.get(2) + ", " + this.caracteristicas.get(3);
+		return this.getTipoDeCompetidor() + ", " + this.getNombreReal() + ", " + this.getNombre() + ", "
+				+ this.getCaracteristica(0) + ", " + this.getCaracteristica(1) + ", " + this.getCaracteristica(2) + ", "
+				+ this.getCaracteristica(3);
 
 	}
 

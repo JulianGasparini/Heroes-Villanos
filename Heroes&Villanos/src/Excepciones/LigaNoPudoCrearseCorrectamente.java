@@ -7,5 +7,9 @@ public class LigaNoPudoCrearseCorrectamente extends Exception {
 	 * introduccion incorrecta de datos
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public LigaNoPudoCrearseCorrectamente() {
+		super("La liga no pudo crearse correctamente.");
+	}
 
 }

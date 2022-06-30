@@ -1,90 +1,52 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import Excepciones.CompetidorNoExisteException;
 import Excepciones.CompetidorNoPuedeAgregarseALigaException;
 import Excepciones.CompetidorRepetidoException;
 import Excepciones.LigaNoPudoCrearseCorrectamente;
+import ManipuladorCompetidores.ArenaDeCombate;
 import manejoDePersonajes.*;
 
-public class CreadorLigas {
+public class CreadorLigas extends Creador {
 
-	private ArenaDeCombate ac;
 	/*
-	 * @pos: obtiene la instancia de la ArenaDeCombate
+	 * @pos: procesa una Liga construida en una linea con el formato correspondiente
+	 * ("Nombre Liga", Integrante n, Integrante n+1, ...) Si la liga se crea sin
+	 * problemas la almacena en la lista de competidores de la clase ArenaDeCombate
 	 */
-	public CreadorLigas() {
-		ac = ArenaDeCombate.getInstancia();
-	}
-	/*
-	 * @pos: procesa una Liga construida en una linea con el formato correspondiente ("Nombre Liga", Integrante n, Integrante n+1, ...)
-	 * 		Si la liga se crea sin problemas la almacena en la lista de competidores de la clase ArenaDeCombate
-	 */
-	public void cargarLigaAMemoria(String[] datos) throws LigaNoPudoCrearseCorrectamente {
+	public boolean crear(String[] datos) throws LigaNoPudoCrearseCorrectamente {
+		ArenaDeCombate ac = ArenaDeCombate.getInstancia();
 		try {
 
-			Liga nuevaLiga = new Liga(datos[0].trim()); // Nombre			
-			nuevaLiga.setTipo(ac.getCompetidor(datos[1].trim()).getTipoDeCompetidor()); //Set tipo de Liga
+			Liga nuevaLiga = new Liga(datos[0].trim());
+			try {
+				nuevaLiga.setTipoDeCompetidor(ac.getCompetidor(datos[1].trim()).getTipoDeCompetidor());
+			} catch (NullPointerException e) {
+				throw new CompetidorNoExisteException();
+			}
+			for (int i = 1; i < datos.length; i++) {
 
-			for (int i = 1; i < datos.length; i++) { // Mientras la linea siga
+				Competidor adicionALiga = ac.getCompetidor(datos[i].trim());
 
-				Competidor adicionALiga = ac.getCompetidor(datos[i].trim()); // Busca el personaje
-
-				if (adicionALiga == null)	{								// Si no existe, levanta excepcion
+				if (adicionALiga == null) {
 					throw new CompetidorNoExisteException();
-					}
+				}
 
 				if (!adicionALiga.getPerteneceALiga()
-						|| adicionALiga.getTipoDeCompetidor() == nuevaLiga.getTipoDeCompetidor()) { // Si existe, le pregunta si ya no pertenece a otra liga
-																									// y si coincide con el tipo de villano/heroe
-
-					nuevaLiga.agregarCompetidor(adicionALiga);										// Lo agrega a la liga y lo marca como perteneciente a una liga
+						|| adicionALiga.getTipoDeCompetidor() == nuevaLiga.getTipoDeCompetidor()) {
+					nuevaLiga.agregarCompetidor(adicionALiga);
 					adicionALiga.setPerteneceALiga(true);
 
 				} else {
 					throw new CompetidorNoPuedeAgregarseALigaException();
 				}
 			}
-			
-			ac.agregarCompetidor(nuevaLiga);														// Luego de iterar por todos los integrantes, agrega la liga a la lista de competidores
+
+			ac.agregarCompetidor(nuevaLiga);
 			ac.agregarALigas(nuevaLiga);
-		} catch (CompetidorNoPuedeAgregarseALigaException e) {
+			return true;
+		} catch (CompetidorNoPuedeAgregarseALigaException | CompetidorNoExisteException | CompetidorRepetidoException e) {
 			throw new LigaNoPudoCrearseCorrectamente();
-		} catch (CompetidorNoExisteException | NullPointerException e) {
-			System.err.println("Competidor no existe o se encutra repetido en la liga");
-		} catch (CompetidorRepetidoException e) {
-			System.err.println("La liga ya existe");
 		}
-
 	}
-	
-	/*
-	 * @pos: Procesa un archivo conteniendo multiples lineas que conforman ligas
-	 */
-	public void cargarLigaDesdeArchivo(String archivo) throws FileNotFoundException, LigaNoPudoCrearseCorrectamente {
-
-		try {
-
-			BufferedReader bf = new BufferedReader(new FileReader(archivo));
-			String linea;
-
-			while ((linea = bf.readLine()) != null) {
-
-				String[] datos = linea.split(",");
-				cargarLigaAMemoria(datos);
-
-			}
-
-			bf.close();
-
-		} catch (IOException o) {
-			throw new FileNotFoundException();
-		}
-
-	}
-
 }

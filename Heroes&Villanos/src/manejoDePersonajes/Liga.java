@@ -4,35 +4,26 @@ import java.util.*;
 
 public class Liga extends Competidor {
 
-	Tipo tipo;
 	private ArrayList<Competidor> liga;
 
 	// Constructor de liga
 	public Liga(String nombreLiga) {
-		this.nombre = nombreLiga;
+		setNombre(nombreLiga);
 		this.liga = new ArrayList<Competidor>();
-		this.perteneceALiga = false;
-	}
-
-	public Tipo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+		setPerteneceALiga(false);;
 	}
 
 	// Agrega competidor a lista de liga
-	public void agregarCompetidor(Competidor p) {
-		liga.add(p);
+	public boolean agregarCompetidor(Competidor p) {
+		return liga.add(p);
 	}
 
 	// Obtiene el valor de la caracteristica que se pasa por parámetro
 	@Override
-	public int obtenerCaracteristica(Caracteristica c) {
+	public int getCaracteristicaPorEnum(Caracteristica c) {
 		int suma = 0;
 		for (Competidor p : liga) {
-			suma += p.obtenerCaracteristica(c);
+			suma += p.getCaracteristicaPorEnum(c);
 		}
 		return suma;
 	}

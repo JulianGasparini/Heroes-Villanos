@@ -1,27 +1,22 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.security.InvalidParameterException;
-
 import Excepciones.CompetidorRepetidoException;
-import Excepciones.LineaDePersonajeMalCreada;
+import Excepciones.PersonajeNoPudoCrearseCorrectamente;
+import ManipuladorCompetidores.ArenaDeCombate;
 import manejoDePersonajes.*;
 
 /*
  * Esta clase tiene la responsabilidad de crear Personajes, sean ingresados por consola o por un archivo de texto
  */
-public class CreadorPersonajes {
+public class CreadorPersonajes extends Creador {
 
-
-	private ArenaDeCombate arena;
-	
 	/*
-	 * @pos: crea un personaje y lo agrega a la lista en la instancia de la Arena de combate
+	 * @pos: crea un personaje y lo agrega a la lista en la instancia de la Arena de
+	 * combate
 	 */
-	public boolean crearPersonaje(String[] datos) throws LineaDePersonajeMalCreada {
+	@Override
+	public boolean crear(String[] datos) throws PersonajeNoPudoCrearseCorrectamente {
+		ArenaDeCombate arena = ArenaDeCombate.getInstancia();
 
 		try {
 
@@ -32,44 +27,8 @@ public class CreadorPersonajes {
 			arena.agregarAPersonajes(nuevo);
 			return true;
 
-		} catch (InvalidParameterException | NumberFormatException | IndexOutOfBoundsException | CompetidorRepetidoException e) { // revisar
-			throw new LineaDePersonajeMalCreada();
+		} catch (IllegalArgumentException | IndexOutOfBoundsException | CompetidorRepetidoException e) {
+			throw new PersonajeNoPudoCrearseCorrectamente();
 		}
 	}
-	
-	/*
-	 * @pos: lee el archivo indicado en el parametro desde el directorio base del proyecto ...\\Heroes&Villano\\archivo
-	 */
-	public void cargarPersonajesDesdeArchivo(String archivo) throws FileNotFoundException, LineaDePersonajeMalCreada { // revisar
-																														// excepcion
-
-		try {
-
-			BufferedReader bf = new BufferedReader(new FileReader(archivo));
-			String linea;
-
-			while ((linea = bf.readLine()) != null) {
-
-				String[] datos = linea.split(",");
-				crearPersonaje(datos);
-
-			}
-
-			bf.close();
-
-		} catch (IOException o) {
-			throw new FileNotFoundException();
-		}
-
-	}
-	
-	/*
-	 * @Constructor: se crea el objeto junto con la instancia de la arena de combate
-	 */
-
-	public CreadorPersonajes() {
-
-		arena = ArenaDeCombate.getInstancia();
-	}
-
 }

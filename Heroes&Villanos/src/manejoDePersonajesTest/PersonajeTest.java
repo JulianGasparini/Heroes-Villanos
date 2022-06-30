@@ -32,10 +32,10 @@ public class PersonajeTest {
 
 	@Test
 	public void caracteristicasDeHeroeTest() {
-		Assert.assertEquals(400, heroe.obtenerCaracteristica(Caracteristica.VELOCIDAD));
-		Assert.assertEquals(600, heroe.obtenerCaracteristica(Caracteristica.FUERZA));
-		Assert.assertEquals(800, heroe.obtenerCaracteristica(Caracteristica.RESISTENCIA));
-		Assert.assertEquals(600, heroe.obtenerCaracteristica(Caracteristica.DESTREZA));
+		Assert.assertEquals(400, heroe.getCaracteristicaPorEnum(Caracteristica.VELOCIDAD));
+		Assert.assertEquals(600, heroe.getCaracteristicaPorEnum(Caracteristica.FUERZA));
+		Assert.assertEquals(800, heroe.getCaracteristicaPorEnum(Caracteristica.RESISTENCIA));
+		Assert.assertEquals(600, heroe.getCaracteristicaPorEnum(Caracteristica.DESTREZA));
 	}
 
 	@Test
@@ -55,10 +55,14 @@ public class PersonajeTest {
 
 	@Test
 	public void caracteristicasDeVillanoTest() {
-		Assert.assertEquals(500, villano.obtenerCaracteristica(Caracteristica.VELOCIDAD));
-		Assert.assertEquals(300, villano.obtenerCaracteristica(Caracteristica.FUERZA));
-		Assert.assertEquals(900, villano.obtenerCaracteristica(Caracteristica.RESISTENCIA));
-		Assert.assertEquals(600, villano.obtenerCaracteristica(Caracteristica.DESTREZA));
+		Assert.assertEquals(500, villano.getCaracteristicaPorEnum(Caracteristica.VELOCIDAD));
+		Assert.assertEquals(300, villano.getCaracteristicaPorEnum(Caracteristica.FUERZA));
+		Assert.assertEquals(900, villano.getCaracteristicaPorEnum(Caracteristica.RESISTENCIA));
+		Assert.assertEquals(600, villano.getCaracteristicaPorEnum(Caracteristica.DESTREZA));
+	}
+	@Test
+	public void toStringPersonaje() {
+		Assert.assertEquals("Heroe, Bruce Wayne, Batman, 400, 600, 800, 600", heroe.toString());
 	}
 
 }

@@ -7,5 +7,8 @@ public class CompetidorNoExisteException extends Exception {
 	 * ArenaDeCombate y este no existe
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	public CompetidorNoExisteException() {
+		super("El Competidor no se encuentra dentro de los guardados en memoria");
+	}
 }

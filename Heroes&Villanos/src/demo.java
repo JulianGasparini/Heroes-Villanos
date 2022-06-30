@@ -1,13 +1,14 @@
-package io;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import Excepciones.EsEmpateException;
 import Excepciones.LigaNoPudoCrearseCorrectamente;
-import Excepciones.LineaDePersonajeMalCreada;
+import Excepciones.PersonajeNoPudoCrearseCorrectamente;
 import Excepciones.MismoTipoExcepcion;
+import Excepciones.NoSeEncontroElArchivoExcepcion;
+import ManipuladorCompetidores.ArenaDeCombate;
+import ManipuladorCompetidores.ConversorDatosAString;
 import manejoDePersonajes.*;
+import io.*;
 
 public class demo {
 
@@ -15,10 +16,11 @@ public class demo {
 
 		Scanner sn = new Scanner(System.in);
 		Menu menu = new Menu();
-		CreadorPersonajes la = new CreadorPersonajes();
 		ArenaDeCombate ac = ArenaDeCombate.getInstancia();
 		Escritor es = new Escritor();
-		CreadorLigas cl = new CreadorLigas();
+		ConversorDatosAString cs = new ConversorDatosAString();
+		Creador cl = new CreadorLigas();
+		Creador cp = new CreadorPersonajes();
 
 		int opcion;
 
@@ -38,42 +40,33 @@ public class demo {
 				switch (op) {
 
 				case 1:
-					System.out.println("Seleccionaste: carga desde archivo\n");
-					System.out.println("Introduci el nombre del archivo que queres cargar\n");
+					System.out.println(menu.submenuCargaArchivo());
+
 					try {
-						la.cargarPersonajesDesdeArchivo(sn.next());
-					} catch (FileNotFoundException e) {
-						System.err.println("No se encontro el archivo");
-					} catch (LineaDePersonajeMalCreada e) {
-						System.err.println("Una linea de personaje se encontró mal formada");
-					} catch (IllegalArgumentException e) {
-						System.err.println("La linea esta mal formada o no pertenece a una linea de personaje");
+						cp.cargarDesdeArchivo(sn.next());
+					} catch (PersonajeNoPudoCrearseCorrectamente | LigaNoPudoCrearseCorrectamente | NoSeEncontroElArchivoExcepcion e) {
+						System.err.println(e.getMessage());
 					}
 					break;
 				case 2:
-					System.out.println("Seleccionaste: creación\n");
-					System.out.println("Introduci la linea con los datos de tu personaje en el siguiente orden: \n");
-					System.out.println(
-							"1- Heroe/Villano\n2-Nombre real\n3-Nombre de personaje\n4-Su velocidad\n5-Su fuerza\n6-Su resistencia\n7-Su destreza");
+					System.out.println(menu.submenuCreacionPersonaje());
+
 					String[] pj = new String[7];
 					for (int i = 0; i < pj.length; i++) {
 						pj[i] = sn.next();
 					}
 					try {
-						la.crearPersonaje(pj);
-					} catch (LineaDePersonajeMalCreada e) {
-						System.err.println("Datos introducidos incorrectamente");
+						cp.crear(pj);
+					} catch (PersonajeNoPudoCrearseCorrectamente | LigaNoPudoCrearseCorrectamente e) {
+						System.err.println(e.getMessage());
 					}
 
 					break;
 				case 3:
-					System.out.println("Seleccionaste: Listado\n");
-					System.out.println(ac.toStringPersonajes());
+					System.out.println("Lista: \n" + cs.toStringPersonajes());
 					break;
 				case 4:
-					System.out.println("Seleccionaste: Guardar en archivo todos los personajes\n");
-					System.out.println(
-							"Introduci el nombre del archivo donde se van a guardar los personajes (sin .txt): ");
+					System.out.println(menu.submenuGuardarPersonajes());
 					es.escribirPersonajesEnArchivo(sn.next());
 					break;
 
@@ -88,22 +81,23 @@ public class demo {
 				switch (op2) {
 
 				case 1:
-					System.out.println("Seleccionaste: carga desde archivo\n");
-					System.out.println("Introduci el nombre del archivo que queres cargar\n");
+					System.out.println(menu.submenuCargaArchivo());
 					try {
-						cl.cargarLigaDesdeArchivo(sn.next());
-					} catch (FileNotFoundException e) {
-						System.err.println("No se encontro el archivo");
-					} catch (LigaNoPudoCrearseCorrectamente e) {
-						System.err.println("Una liga no pudo crearse, los datos eran incorrectos");
+						cl.cargarDesdeArchivo(sn.next());
+					} catch (NoSeEncontroElArchivoExcepcion | LigaNoPudoCrearseCorrectamente | PersonajeNoPudoCrearseCorrectamente e) {
+						System.err.println(e.getMessage());
 					}
+
 					break;
 				case 2:
-					System.out.println("Seleccionaste: creación\n");
-					System.out.println("Introduci el nombre de la liga a crear");
+
+					System.out.println(menu.submenuCreacionLiga());
+
 					String liga = sn.next();
+
 					System.out.println(
 							"Introduci los personajes o ligas que van a formar parte de la liga.\n Para terminar ingresa un '.'");
+
 					for (int i = 0; i <= 30; i++) {
 						String linea = sn.next();
 						if (!linea.equals("p")) {
@@ -113,18 +107,20 @@ public class demo {
 						}
 					}
 					try {
-						cl.cargarLigaAMemoria(liga.split(","));
-					} catch (LigaNoPudoCrearseCorrectamente e) {
-						System.err.println("La liga no puedo crearse, datos incorrectos");
+						cl.crear(liga.split(","));
+					} catch (LigaNoPudoCrearseCorrectamente | PersonajeNoPudoCrearseCorrectamente e) {
+						System.err.println(e.getMessage());
 					}
+
 					break;
+
 				case 3:
-					System.out.println("Seleccionaste: Listado\n");
-					System.out.println(ac.toStringLigas());
+
+					System.out.println("Seleccionaste: Listado\n" + cs.toStringLigas());
 					break;
+
 				case 4:
-					System.out.println("Seleccionaste: Guardar en archivo todos las ligas\n");
-					System.out.println("Introduci el nombre del archivo donde se van a guardar las ligas (sin .txt): ");
+					System.out.println(menu.submenuGuardarLigas());
 					es.escribirLigasEnArchivo(sn.next());
 					break;
 
@@ -133,9 +129,7 @@ public class demo {
 				break;
 			case 3:
 
-				System.out.println("Seleccionaste: combate\n");
-				System.out.println(
-						"Ingresa la caracteristica por la que van a combatir los Competidores(VELOCIDAD, FUERZA, RESISTENCIA, DESTREZA)");
+				System.out.println(menu.submenuCombate());
 
 				try {
 					Caracteristica c = Caracteristica.valueOf(sn.next());
@@ -160,8 +154,6 @@ public class demo {
 							"Los dos competidores son del mismo tipo\n para enfrentarse deben ser heroe vs villano o villano vs heroe");
 				} catch (NullPointerException e) {
 					System.err.println("Personaje no existe");
-				} catch (EsEmpateException e) {
-					System.out.println("Empate");
 				}
 
 				break;
@@ -177,20 +169,19 @@ public class demo {
 					System.out.println(
 							"Seleccionaste: Personajes/ligas ordenados por x caracteristica\nIntroduzca la caractertisica por la que quiere ordenarlos:");
 					try {
-						System.out.println(ac.toStringOrdenados(Caracteristica.valueOf(sn.next())));
-					} catch (Exception e) {
+						System.out.println(cs.toStringOrdenadosPorCaracteristica(Caracteristica.valueOf(sn.next())));
+					} catch (IllegalArgumentException e) {
 						System.err.println("No existe esa caracteristica");
 					}
 
 					break;
 				case 2:
-					System.out.println("Seleccionaste: Personajes ligas que venzan a x personajes o liga\n");
-					System.out.println("Ingresa tu personaje o liga que queres comparar con el resto");
+					System.out.println(menu.submenuListadoCombate());
 					try {
 						Competidor comp = ac.getCompetidor(sn.next().trim());
 						System.out.println("Ingresa la caracteristica por la que lo queres comparar");
 						Caracteristica c = Caracteristica.valueOf(sn.next());
-						System.out.println(ac.getCompetidoresQuePuedeVencer(comp, c));
+						System.out.println(cs.getCompetidoresQuePuedeVencer(comp, c));
 					} catch (NullPointerException e) {
 						System.err.println("Competidor no existe");
 					}
